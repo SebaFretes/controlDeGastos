@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react';
 
 export const BudgetForm = () => {
 
@@ -21,7 +21,8 @@ export const BudgetForm = () => {
         </div>
         <input type="submit"
         value='Definir Presupuesto'
-        className="bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-black uppercase"
+        className={` cursor-pointer w-full p-2 text-white font-black uppercase ${budget > 0 ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-200'}`}
+        disabled={budget <= 0}
         />
     </form>
   )
