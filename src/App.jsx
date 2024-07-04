@@ -1,9 +1,11 @@
 import { BudgetForm } from "./components/BudgetForm"
+import { BudgetTracker } from "./components/BudgetTracker";
 import { useBudget } from "./hooks/useBudget"
 
 export const App = () => {
 
   const {state, dispatch} = useBudget();
+  console.log(state);
   
   return (
     <>
@@ -12,9 +14,8 @@ export const App = () => {
     </div>
     
     <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 p-10">
-      <BudgetForm />
-    </div>
-    
+      {state.budget <= 0 ? <BudgetForm /> : <BudgetTracker />}
+    </div>    
     </>
   )
 }
