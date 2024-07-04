@@ -1,15 +1,27 @@
 import { useState } from 'react';
+import { useBudget } from '../hooks/useBudget';
 
 export const BudgetForm = () => {
 
     const [budget, setBudget] = useState(0);
+    const { dispatch } = useBudget();
 
     const handleChange = (e) => {
         setBudget(e.target.value);
     }
 
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      dispatch({
+        type: 'add-budget',
+        payload: {budget}
+      })
+      // setBudget(0);
+    }
+
   return (
-    <form className="space-y-5">
+    <form className="space-y-5" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-5">
             <label className="text-center text-blue-600 font-bold">Definir Presupuesto</label>
             <input type="number"
