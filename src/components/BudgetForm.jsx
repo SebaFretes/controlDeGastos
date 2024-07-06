@@ -7,7 +7,7 @@ export const BudgetForm = () => {
     const { dispatch } = useBudget();
 
     const handleChange = (e) => {
-        setBudget(e.target.value);
+      setBudget(e.target.value);
     }
 
     const handleSubmit = (e) => {
