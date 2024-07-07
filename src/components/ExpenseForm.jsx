@@ -1,6 +1,12 @@
-import { categories } from "../data/categories"
+import { useState } from "react";
+import { categories } from "../data/categories";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const ExpenseForm = () => {
+
+    const [startDate, setStartDate] = useState(new Date());
+
     return (
         <>
             <form className="space-y-5">
@@ -32,6 +38,13 @@ export const ExpenseForm = () => {
                             </option>
                         ))}
                     </select>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                    <label className="text-xl">
+                        Fecha:
+                    </label>
+                    <DatePicker className="bg-slate-100 p-2 border-0" selected={startDate} onChange={(date) => setStartDate(date)}/>
                 </div>
 
                 <input type="submit"
