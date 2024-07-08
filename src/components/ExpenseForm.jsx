@@ -12,19 +12,28 @@ export const ExpenseForm = () => {
         category: '',
     });
 
+    const [error, setError] = useState('');
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setExpense({
             ...expense,
             [name] : name === 'amount' ? +value : value
         });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(Object.values(expense).includes('')) {
+            setError('Todos los campos deben ser completados');
+            return;
+        }
     }
 
     return (
         <>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit}>
                 <h1 className="text-center text-2xl uppercase font-black border-blue-500 border-b-4 py-2">Gastos</h1>
-
                 <div className="flex flex-col gap-2">
                     <label className="text-xl">
                         Gasto:
@@ -66,6 +75,7 @@ export const ExpenseForm = () => {
                     value={startDate}
                     />
                 </div>
+                {error && (<div className="bg-red-600 text-white text-center font-bold">Todos los campos deben ser completados</div>)}
 
                 <input type="submit"
                 className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
