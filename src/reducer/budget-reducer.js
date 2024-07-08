@@ -2,6 +2,7 @@
 export const initialState = {
     budget: 0,
     modal: false,
+    expenses: [],
 };
 
 export const budgetReducer = (state = initialState, action) => {
@@ -23,6 +24,13 @@ export const budgetReducer = (state = initialState, action) => {
         return {
             ...state,
             modal: false
+        }
+    }
+
+    if(action.type === 'add-expense') {
+        return {
+            ...state,
+            expenses: [...state.expenses, action.payload.expense]
         }
     }
 
