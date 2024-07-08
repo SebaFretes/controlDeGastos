@@ -6,6 +6,19 @@ import "react-datepicker/dist/react-datepicker.css";
 export const ExpenseForm = () => {
 
     const [startDate, setStartDate] = useState(new Date());
+    const [expense, setExpense] = useState({
+        expenseName: '',
+        amount: 0,
+        category: '',
+    });
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setExpense({
+            ...expense,
+            [name] : name === 'amount' ? +value : value
+        });
+    }
 
     return (
         <>
@@ -16,21 +29,24 @@ export const ExpenseForm = () => {
                     <label className="text-xl">
                         Gasto:
                     </label>
-                    <input type="text" className="bg-slate-100 p-2" placeholder="Añadí el nombre del gasto"/>
+                    <input type="text" name="expenseName" className="bg-slate-100 p-2" placeholder="Añadí el nombre del gasto"
+                    value={expense.expenseName} onChange={handleChange}/>
                 </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="text-xl">
                         Cantidad:
                     </label>
-                    <input type="number" className="bg-slate-100 p-2" placeholder="Agregá la cantidad"/>
+                    <input type="number" name="amount" className="bg-slate-100 p-2" placeholder="Agregá la cantidad"
+                    value={expense.amount} onChange={handleChange}/>
                 </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="text-xl">
                         Categoría:
                     </label>
-                    <select id="category" className="bg-slate-100 p-2" name="category">
+                    <select className="bg-slate-100 p-2" name="category"
+                    value={expense.category} onChange={handleChange}>
                         <option value="">--Seleccioná la categoría--</option>
                         {categories.map(cat => (
                             <option key={cat.id} value={cat.id}>
@@ -44,7 +60,11 @@ export const ExpenseForm = () => {
                     <label className="text-xl">
                         Fecha:
                     </label>
-                    <DatePicker className="bg-slate-100 p-2 border-0" selected={startDate} onChange={(date) => setStartDate(date)}/>
+                    <DatePicker className="bg-slate-100 p-2 border-0"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    value={startDate}
+                    />
                 </div>
 
                 <input type="submit"
