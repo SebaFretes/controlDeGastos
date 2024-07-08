@@ -30,7 +30,7 @@ export const ExpenseForm = () => {
             (Swal.fire({
                 title: 'Todos los campos deben ser completados',
                 icon: 'error',
-                confirmButtonText: 'Error'
+                confirmButtonText: 'VOLVER'
             }))
             return;
         }
@@ -63,7 +63,7 @@ export const ExpenseForm = () => {
                     <label className="text-xl">
                         Valor:
                     </label>
-                    <input type="number" name="amount" className="bg-slate-100 p-2" placeholder="Agregá la cantidad"
+                    <input type="number" name="amount" className="bg-slate-100 p-2" placeholder="Agregá el valor"
                     value={expense.amount} onChange={handleChange}/>
                 </div>
 
