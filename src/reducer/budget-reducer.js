@@ -1,9 +1,17 @@
+import { v4 } from 'uuid';
 
 export const initialState = {
     budget: 0,
     modal: false,
     expenses: [],
 };
+
+const createExpenseId = (prevExpense) => {
+    return {
+        ...prevExpense,
+        id: v4()
+    }
+}
 
 export const budgetReducer = (state = initialState, action) => {
     if(action.type === 'add-budget') {
@@ -28,9 +36,11 @@ export const budgetReducer = (state = initialState, action) => {
     }
 
     if(action.type === 'add-expense') {
+        const expenseWId = createExpenseId(action.payload.expense)
         return {
             ...state,
-            expenses: [...state.expenses, action.payload.expense]
+            expenses: [...state.expenses, expenseWId],
+            modal: false
         }
     }
 

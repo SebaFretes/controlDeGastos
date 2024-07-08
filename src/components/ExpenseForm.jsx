@@ -35,11 +35,7 @@ export const ExpenseForm = () => {
             return;
         }
         dispatch({type: 'add-expense', payload: {expense} });
-        setExpense({
-            expenseName: '',
-            amount: 0,
-            category: '',
-        });
+
         Swal.fire({
             title: 'Gasto agregado',
             icon: 'success',

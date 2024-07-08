@@ -1,5 +1,6 @@
 import { BudgetForm } from "./components/BudgetForm"
 import { BudgetTracker } from "./components/BudgetTracker";
+import { ExpenseList } from "./components/ExpenseList";
 import { Modal } from "./components/Modal";
 import { useBudget } from "./hooks/useBudget"
 
@@ -20,6 +21,7 @@ export const App = () => {
       {state.budget > 0 && (
         <div className="max-w-3xl mx-auto py-10">
           <Modal />
+          <ExpenseList />
         </div>
       )}
 
