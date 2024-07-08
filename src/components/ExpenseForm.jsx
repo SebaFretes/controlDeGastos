@@ -7,11 +7,11 @@ import Swal from 'sweetalert2';
 
 export const ExpenseForm = () => {
 
-    const [startDate, setStartDate] = useState(new Date());
     const [expense, setExpense] = useState({
         expenseName: '',
         amount: 0,
         category: '',
+        date: new Date()
     });
 
     const {dispatch} = useBudget();
@@ -21,6 +21,13 @@ export const ExpenseForm = () => {
         setExpense({
             ...expense,
             [name] : name === 'amount' ? +value : value
+        });
+    };
+
+    const handleDateChange = (date) => {
+        setExpense({
+            ...expense,
+            date: date
         });
     };
 
@@ -83,9 +90,8 @@ export const ExpenseForm = () => {
                         Fecha:
                     </label>
                     <DatePicker className="bg-slate-100 p-2 border-0"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    value={startDate}
+                    selected={expense.date}
+                    onChange={handleDateChange}
                     />
                 </div>
                 

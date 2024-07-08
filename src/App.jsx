@@ -24,7 +24,7 @@ export const App = () => {
           <ExpenseList />
         </div>
       )}
-
+      
     </>
   )
 }

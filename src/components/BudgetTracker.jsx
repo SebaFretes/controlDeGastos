@@ -1,6 +1,10 @@
+import { useBudget } from "../hooks/useBudget";
 import { AmountDisplay } from "./AmountDisplay";
 
 export const BudgetTracker = () => {
+
+    const {state} = useBudget();
+
     return(
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -15,7 +19,7 @@ export const BudgetTracker = () => {
             </div>
 
             <div>
-                <AmountDisplay label="Presupuesto" amount={300}/>
+                <AmountDisplay label="Presupuesto" amount={state.budget}/>
             </div>
 
             <div>
