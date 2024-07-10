@@ -1,6 +1,14 @@
 import { categories } from "../data/categories";
 import { useBudget } from "../hooks/useBudget";
 import { AmountDisplay } from "./AmountDisplay";
+import {
+    LeadingActions,
+    SwipeableList,
+    SwipeableListItem,
+    SwipeAction,
+    TrailingActions,
+  } from 'react-swipeable-list';
+import 'react-swipeable-list/dist/styles.css';
 
 export const ExpenseList = () => {
 
@@ -47,7 +55,7 @@ export const ExpenseList = () => {
                                     <div>
                                         <p className="font-bold uppercase text-slate-500">{getCategoryName(exp.category)}</p>
                                         <p>{exp.expenseName}</p>
-                                        <p className="text-slate-600">Compra realizada el: {formatDate(exp.date)}</p>
+                                        <p className="text-slate-600">Pago realizado el: {formatDate(exp.date)}</p>
                                     </div>
                                 </div>
                                 <AmountDisplay amount={exp.amount} />
