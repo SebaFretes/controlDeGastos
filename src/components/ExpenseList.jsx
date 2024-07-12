@@ -40,30 +40,53 @@ export const ExpenseList = () => {
         return category.icon;
     };
 
+    const leadingActions = () => (
+        <LeadingActions>
+            <SwipeAction onClick={() => {}} destructive={true}>
+                Actualizar
+            </SwipeAction>
+        </LeadingActions>
+    )
+
+    const trailingActions = () => (
+        <TrailingActions>
+            <SwipeAction onClick={() => {}}>
+                Eliminar
+            </SwipeAction>
+        </TrailingActions>
+    )
+
     return (
-        <div className="mt-10">
-            {isEmpty ? <h1 className="text-gray-600 text-2xl font-bold">No hay gastos</h1> :
-                <>
-                    <h1 className="text-gray-600 text-2xl font-bold my-5">
-                        Listado de Gastos
-                    </h1>
+        <div className="mt-2">
+            {isEmpty ? (
+                <h1 className="text-gray-600 text-2xl font-bold">No hay gastos</h1>
+            ) : (
+                <SwipeableList>
+                    <h1 className="text-gray-600 text-2xl font-bold mb-4">Listado de Gastos</h1>
                     {state.expenses.map(exp => (
-                        <div className="bg-white shadow-lg p-10 w-full border-b border-gray-100 mb-4">
-                            <div key={exp.id} className="flex justify-between items-center gap-5 mb-5">
-                                <div className="flex items-center gap-5">
-                                    <img src={`/icono_${getCategoryIcon(exp.category)}.svg`} alt="img" className="w-20" />
-                                    <div>
-                                        <p className="font-bold uppercase text-slate-500">{getCategoryName(exp.category)}</p>
-                                        <p>{exp.expenseName}</p>
-                                        <p className="text-slate-600">Pago realizado el: {formatDate(exp.date)}</p>
+                        <SwipeableListItem
+                            key={exp.id}
+                            maxSwipe={30}
+                            leadingActions={leadingActions(exp.id)}
+                            trailingActions={trailingActions(exp.id)}
+                        >
+                            <div className="bg-white shadow-lg p-10 w-full border-b border-gray-100 mb-4">
+                                <div className="flex justify-between items-center gap-5 mb-5">
+                                    <div className="flex items-center gap-5">
+                                        <img src={`/icono_${getCategoryIcon(exp.category)}.svg`} alt="img" className="w-20" />
+                                        <div>
+                                            <p className="font-bold uppercase text-slate-500">{getCategoryName(exp.category)}</p>
+                                            <p>{exp.expenseName}</p>
+                                            <p className="text-slate-600">Pago realizado el: {formatDate(exp.date)}</p>
+                                        </div>
                                     </div>
+                                    <AmountDisplay amount={exp.amount} />
                                 </div>
-                                <AmountDisplay amount={exp.amount} />
                             </div>
-                        </div>
+                        </SwipeableListItem>
                     ))}
-                </>
-            }
+                </SwipeableList>
+            )}
         </div>
     )
 }
