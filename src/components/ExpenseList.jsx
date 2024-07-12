@@ -12,7 +12,7 @@ import 'react-swipeable-list/dist/styles.css';
 
 export const ExpenseList = () => {
 
-    const { state } = useBudget();
+    const { state, dispatch } = useBudget();
 
     const isEmpty = state.expenses.length === 0;
 
@@ -40,17 +40,17 @@ export const ExpenseList = () => {
         return category.icon;
     };
 
-    const leadingActions = () => (
+    const leadingActions = (id) => (
         <LeadingActions>
-            <SwipeAction onClick={() => {}} destructive={true}>
+            <SwipeAction onClick={() => {}}>
                 Actualizar
             </SwipeAction>
         </LeadingActions>
     )
 
-    const trailingActions = () => (
+    const trailingActions = (id) => (
         <TrailingActions>
-            <SwipeAction onClick={() => {}}>
+            <SwipeAction onClick={() => dispatch({type: 'remove-expense', payload: id})} destructive={true}>
                 Eliminar
             </SwipeAction>
         </TrailingActions>
