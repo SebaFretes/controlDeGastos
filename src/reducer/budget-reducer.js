@@ -32,7 +32,8 @@ export const budgetReducer = (state = initialState, action) => {
     if(action.type === 'hide-modal') {
         return {
             ...state,
-            modal: false
+            modal: false,
+            editingId: ''
         }
     }
 
@@ -66,6 +67,7 @@ export const budgetReducer = (state = initialState, action) => {
             ...state,
             expenses: state.expenses.map(exp => exp.id === action.payload.expense.id ? action.payload.expense : exp),
             modal: false,
+            editingId: '',
         }
     }
 

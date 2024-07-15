@@ -64,7 +64,7 @@ export const ExpenseForm = () => {
     return (
         <>
             <form className="space-y-5" onSubmit={handleSubmit}>
-                <h1 className="text-center text-2xl uppercase font-black border-blue-500 border-b-4 py-2">Gastos</h1>
+                <h1 className="text-center text-2xl uppercase font-black border-blue-500 border-b-4 py-2">Gasto</h1>
                 <div className="flex flex-col gap-2">
                     <label className="text-xl">
                         Producto o servicio:
@@ -108,7 +108,7 @@ export const ExpenseForm = () => {
                 
                 <input type="submit"
                 className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
-                value={'Registrar Gasto'}/>
+                value={state.editingId ? 'Actualizar Gasto' : 'Registrar Gasto'}/>
 
             </form>
         </>
