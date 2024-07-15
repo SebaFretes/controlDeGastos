@@ -61,5 +61,13 @@ export const budgetReducer = (state = initialState, action) => {
         }
     }
 
+    if(action.type === 'update-expense') {
+        return {
+            ...state,
+            expenses: state.expenses.map(exp => exp.id === action.payload.expense.id ? action.payload.expense : exp),
+            modal: false,
+        }
+    }
+
     return state;
 };
