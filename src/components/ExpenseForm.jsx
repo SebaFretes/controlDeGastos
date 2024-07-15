@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { categories } from "../data/categories";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,7 +14,14 @@ export const ExpenseForm = () => {
         date: new Date()
     });
 
-    const {dispatch} = useBudget();
+    const {state, dispatch} = useBudget();
+
+    useEffect(() => {
+        if(state.editingId) {
+          const editingExpense = state.expenses.filter(exp => exp.id === state.editingId)[0]
+          setExpense(editingExpense);
+        }
+      }, [state.editingId])
 
     const handleChange = (e) => {
         const {name, value} = e.target;

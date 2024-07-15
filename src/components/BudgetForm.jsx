@@ -4,7 +4,7 @@ import { useBudget } from '../hooks/useBudget';
 export const BudgetForm = () => {
 
     const [budget, setBudget] = useState(0);
-    const { dispatch } = useBudget();
+    const { state, dispatch } = useBudget();
 
     const handleChange = (e) => {
       setBudget(e.target.value);

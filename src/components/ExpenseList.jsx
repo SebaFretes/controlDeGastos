@@ -42,15 +42,15 @@ export const ExpenseList = () => {
 
     const leadingActions = (id) => (
         <LeadingActions>
-            <SwipeAction onClick={() => {}}>
-                Actualizar
+            <SwipeAction onClick={() => dispatch({ type: 'get-expense-by-id', payload: { id } })}>
+                Editar
             </SwipeAction>
         </LeadingActions>
-    )
+    );
 
     const trailingActions = (id) => (
         <TrailingActions>
-            <SwipeAction onClick={() => dispatch({type: 'remove-expense', payload: id})} destructive={true}>
+            <SwipeAction onClick={() => dispatch({type: 'remove-expense', payload: {id} })} destructive={true}>
                 Eliminar
             </SwipeAction>
         </TrailingActions>
@@ -66,7 +66,7 @@ export const ExpenseList = () => {
                     {state.expenses.map(exp => (
                         <SwipeableListItem
                             key={exp.id}
-                            maxSwipe={30}
+                            maxSwipe={1}
                             leadingActions={leadingActions(exp.id)}
                             trailingActions={trailingActions(exp.id)}
                         >

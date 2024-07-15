@@ -4,6 +4,7 @@ export const initialState = {
     budget: 0,
     modal: false,
     expenses: [],
+    editingId: '',
 };
 
 const createExpenseId = (prevExpense) => {
@@ -49,6 +50,14 @@ export const budgetReducer = (state = initialState, action) => {
         return {
             ...state,
             expenses: state.expenses.filter(exp => exp.id !==  action.payload)
+        }
+    }
+
+    if(action.type === 'get-expense-by-id') {
+        return {
+            ...state,
+            editingId: action.payload.id,
+            modal: true,
         }
     }
 
