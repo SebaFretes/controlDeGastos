@@ -54,11 +54,15 @@ export const ExpenseForm = () => {
             dispatch({type: 'add-expense', payload: {expense} });
         }
 
-        Swal.fire({
+        {state.editingId ? Swal.fire({
+            title: 'Gasto actualizado',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }) : Swal.fire({
             title: 'Gasto agregado',
             icon: 'success',
             confirmButtonText: 'OK'
-        })
+        })}
     }
 
     return (
