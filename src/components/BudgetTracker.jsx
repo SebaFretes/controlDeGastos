@@ -5,6 +5,8 @@ export const BudgetTracker = () => {
 
     const {state} = useBudget();
 
+    const totalExpenses = state.expenses.reduce((total, exp) => exp.amount + total, 0);
+
     return(
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -23,11 +25,11 @@ export const BudgetTracker = () => {
             </div>
 
             <div>
-                <AmountDisplay label="Gastado" amount={100}/>
+                <AmountDisplay label="Gastado" amount={totalExpenses}/>
             </div>
 
             <div>
-                <AmountDisplay label="Disponible" amount={200}/>
+                <AmountDisplay label="Disponible" amount={state.budget - totalExpenses}/>
             </div>
 
         </div>
