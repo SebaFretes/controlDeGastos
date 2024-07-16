@@ -1,9 +1,19 @@
 import { v4 } from 'uuid';
 
+const initialBudget = () => {
+    const localStorageBudget = localStorage.getItem('budget');
+    return localStorageBudget ? +localStorageBudget : 0;
+};
+
+const initialExpenses = () => {
+    const localStorageExp = localStorage.getItem('expense');
+    return localStorageExp ? JSON.parse(localStorageExp) : [];
+};
+
 export const initialState = {
-    budget: 0,
+    budget: initialBudget(),
     modal: false,
-    expenses: [],
+    expenses: initialExpenses(),
     editingId: '',
 };
 

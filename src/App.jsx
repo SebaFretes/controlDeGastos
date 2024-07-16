@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BudgetForm } from "./components/BudgetForm"
 import { BudgetTracker } from "./components/BudgetTracker";
 import { ExpenseList } from "./components/ExpenseList";
@@ -7,6 +8,11 @@ import { useBudget } from "./hooks/useBudget"
 export const App = () => {
 
   const {state, dispatch} = useBudget();
+
+  useEffect(() => {
+    localStorage.setItem('budget', state.budget.toString())
+    localStorage.setItem('expense', JSON.stringify(state.expenses))
+  }, [state]);
   
   return (
     <>
