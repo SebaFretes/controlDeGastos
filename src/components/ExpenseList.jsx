@@ -56,6 +56,8 @@ export const ExpenseList = () => {
         </TrailingActions>
     )
 
+    const filteredExpenses = state.currentCategory ? state.expenses.filter(exp => exp.category === state.currentCategory) : state.expenses;
+
     return (
         <div className="mt-2">
             {isEmpty ? (
@@ -63,7 +65,7 @@ export const ExpenseList = () => {
             ) : (
                 <SwipeableList>
                     <h1 className="text-gray-600 text-2xl font-bold mb-4">Listado de Gastos</h1>
-                    {state.expenses.map(exp => (
+                    {filteredExpenses.map(exp => (
                         <SwipeableListItem
                             key={exp.id}
                             maxSwipe={1}

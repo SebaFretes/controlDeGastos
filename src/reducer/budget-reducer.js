@@ -15,6 +15,7 @@ export const initialState = {
     modal: false,
     expenses: initialExpenses(),
     editingId: '',
+    currentCategory: '',
 };
 
 const createExpenseId = (prevExpense) => {
@@ -82,10 +83,18 @@ export const budgetReducer = (state = initialState, action) => {
 
     if (action.type === 'reset-app') {
         return {
+            ...state,
             budget: 0,
             modal: false,
             expenses: [],
             editingId: '',
+        }
+    }
+
+    if (action.type === 'add-filter-category') {
+        return {
+            ...state,
+            currentCategory: action.payload.id
         }
     }
 
