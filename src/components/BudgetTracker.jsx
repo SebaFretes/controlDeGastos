@@ -1,5 +1,6 @@
 import { useBudget } from "../hooks/useBudget";
 import { AmountDisplay } from "./AmountDisplay";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 export const BudgetTracker = () => {
 
