@@ -4,15 +4,16 @@ import { BudgetTracker } from "./components/BudgetTracker";
 import { ExpenseList } from "./components/ExpenseList";
 import { Modal } from "./components/Modal";
 import { useBudget } from "./hooks/useBudget"
+import { FilterList } from "./components/FilterList";
 
 export const App = () => {
 
   const {state, dispatch} = useBudget();
 
-  // useEffect(() => {
-  //   localStorage.setItem('budget', state.budget.toString())
-  //   localStorage.setItem('expense', JSON.stringify(state.expenses))
-  // }, [state]);
+  useEffect(() => {
+    localStorage.setItem('budget', state.budget.toString())
+    localStorage.setItem('expense', JSON.stringify(state.expenses))
+  }, [state]);
   
   return (
     <>
@@ -26,6 +27,7 @@ export const App = () => {
 
       {state.budget > 0 && (
         <div className="max-w-3xl mx-auto py-10">
+          <FilterList />
           <Modal />
           <ExpenseList />
         </div>
