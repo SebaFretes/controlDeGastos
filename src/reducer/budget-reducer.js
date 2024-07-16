@@ -80,5 +80,14 @@ export const budgetReducer = (state = initialState, action) => {
         }
     }
 
+    if (action.type === 'reset-app') {
+        return {
+            budget: 0,
+            modal: false,
+            expenses: [],
+            editingId: '',
+        }
+    }
+
     return state;
 };
