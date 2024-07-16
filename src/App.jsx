@@ -9,10 +9,10 @@ export const App = () => {
 
   const {state, dispatch} = useBudget();
 
-  useEffect(() => {
-    localStorage.setItem('budget', state.budget.toString())
-    localStorage.setItem('expense', JSON.stringify(state.expenses))
-  }, [state]);
+  // useEffect(() => {
+  //   localStorage.setItem('budget', state.budget.toString())
+  //   localStorage.setItem('expense', JSON.stringify(state.expenses))
+  // }, [state]);
   
   return (
     <>

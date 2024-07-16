@@ -6,11 +6,16 @@ export const BudgetTracker = () => {
 
     const { state, totalExpenses, availableMoney } = useBudget();
 
+    const percentage = state.budget > 0 ? ((totalExpenses / state.budget) * 100).toFixed(2) : 0;
+
     return(
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="flex justify-center">
-                <img src="/grafico.jpg" alt="gastos img"/>
+                <CircularProgressbar value={percentage} styles={buildStyles({
+                    pathColor: '#3B82F6',
+                    trailColor: '#F5F5F5'
+                })} text={`${percentage}%`}/>
             </div>
 
             <div className="flex flex-col justify-center items-center gap-8">

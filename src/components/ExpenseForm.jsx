@@ -40,7 +40,7 @@ export const ExpenseForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(Object.values(expense).includes('')) {
+        if(Object.values(expense).includes('') || expense.amount <= 0) {
             (Swal.fire({
                 title: 'Todos los campos deben ser completados',
                 icon: 'error',
@@ -49,20 +49,47 @@ export const ExpenseForm = () => {
             return;
         }
 
-        if (expense.amount > availableMoney) {
-            Swal.fire({
-                title: 'No tenés suficiente dinero para realizar esta compra',
-                icon: 'error',
-                confirmButtonText: 'VOLVER'
-            });
-            dispatch({type: 'hide-modal'})
-            return;
-        }
+        // if (expense.amount > availableMoney) {
+        //     Swal.fire({
+        //         title: 'No tenés suficiente dinero para realizar esta compra',
+        //         icon: 'error',
+        //         confirmButtonText: 'VOLVER'
+        //     });
+        //     dispatch({type: 'hide-modal'})
+        //     return;
+        // }
+
+        // if(state.editingId) {
+        //     dispatch({type: 'update-expense', payload: {expense: {id: state.editingId, ...expense}} })
+        // } else {
+        //     dispatch({type: 'add-expense', payload: {expense} });
+        // }
 
         if(state.editingId) {
-            dispatch({type: 'update-expense', payload: {expense: {id: state.editingId, ...expense}} })
+            const oldExpense = state.expenses.find(exp => exp.id === state.editingId);
+            const oldAmount = oldExpense ? oldExpense.amount : 0;
+
+            if (expense.amount - oldAmount > availableMoney) {
+                Swal.fire({
+                    title: 'No tenés suficiente dinero para realizar esta compra',
+                    icon: 'error',
+                    confirmButtonText: 'VOLVER'
+                });
+                return;
+            }
+
+            dispatch({type: 'update-expense', payload: { expense: { id: state.editingId, ...expense } }});
         } else {
-            dispatch({type: 'add-expense', payload: {expense} });
+            if (expense.amount > availableMoney) {
+                Swal.fire({
+                    title: 'No tenés suficiente dinero para realizar esta compra',
+                    icon: 'error',
+                    confirmButtonText: 'VOLVER'
+                });
+                return;
+            }
+
+            dispatch({type: 'add-expense', payload: { expense } });
         }
 
         {state.editingId ? Swal.fire({
