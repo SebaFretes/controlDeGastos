@@ -3,9 +3,7 @@ import { AmountDisplay } from "./AmountDisplay";
 
 export const BudgetTracker = () => {
 
-    const {state} = useBudget();
-
-    const totalExpenses = state.expenses.reduce((total, exp) => exp.amount + total, 0);
+    const { state, totalExpenses, availableMoney } = useBudget();
 
     return(
         <>
@@ -29,7 +27,7 @@ export const BudgetTracker = () => {
             </div>
 
             <div>
-                <AmountDisplay label="Disponible" amount={state.budget - totalExpenses}/>
+                <AmountDisplay label="Disponible" amount={availableMoney}/>
             </div>
 
         </div>

@@ -8,11 +8,17 @@ export const BudgetProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(budgetReducer, initialState);
 
+    const totalExpenses = state.expenses.reduce((total, exp) => exp.amount + total, 0);
+
+    const availableMoney = state.budget - totalExpenses;
+
     return (
         <BudgetContext.Provider
             value={{
                 state,
                 dispatch,
+                totalExpenses,
+                availableMoney
             }}>
             {children}
         </BudgetContext.Provider>
