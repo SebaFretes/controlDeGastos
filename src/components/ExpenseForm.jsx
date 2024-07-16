@@ -14,7 +14,7 @@ export const ExpenseForm = () => {
         date: new Date()
     });
 
-    const {state, dispatch} = useBudget();
+    const {state, dispatch, totalExpenses, availableMoney} = useBudget();
 
     useEffect(() => {
         if(state.editingId) {
@@ -48,6 +48,17 @@ export const ExpenseForm = () => {
             }))
             return;
         }
+
+        if (expense.amount > availableMoney) {
+            Swal.fire({
+                title: 'No tenés suficiente dinero para realizar esta compra',
+                icon: 'error',
+                confirmButtonText: 'VOLVER'
+            });
+            dispatch({type: 'hide-modal'})
+            return;
+        }
+
         if(state.editingId) {
             dispatch({type: 'update-expense', payload: {expense: {id: state.editingId, ...expense}} })
         } else {
@@ -63,6 +74,7 @@ export const ExpenseForm = () => {
             icon: 'success',
             confirmButtonText: 'OK'
         })}
+
     }
 
     return (
