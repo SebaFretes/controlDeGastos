@@ -8,7 +8,7 @@ import { FilterList } from "./components/FilterList";
 
 export const App = () => {
 
-  const {state, dispatch} = useBudget();
+  const { state } = useBudget();
 
   useEffect(() => {
     localStorage.setItem('budget', state.budget.toString())
@@ -17,8 +17,15 @@ export const App = () => {
   
   return (
     <>
-      <div className="bg-blue-600 py-8 max-h-72">
+      <div className="bg-blue-400 py-8 max-h-72">
         <h1 className="text-white text-center text-3xl font-black uppercase">Planificador de Gastos</h1>
+        <p className="text-center text-1xl font-black uppercase text-white">
+          Desarrollado por <a href="https://github.com/SebaFretes/" target="_blank">
+          <span className="text-blue-800">
+            Sebastian Fretes
+            </span>
+          </a>
+        </p>
       </div>
 
       <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 p-10">
@@ -32,7 +39,6 @@ export const App = () => {
           <ExpenseList />
         </div>
       )}
-      
     </>
   )
 }
